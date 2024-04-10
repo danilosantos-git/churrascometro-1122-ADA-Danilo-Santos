@@ -50,3 +50,5 @@ O objetivo desta atividade é desenvolver uma calculadora chamada "Churrascômet
 6. O código deve fazer uso de chamadas assíncronas e seus derivados.
 
 ### Desenvolvedor
+
+    - Danilo Santos Araújo
