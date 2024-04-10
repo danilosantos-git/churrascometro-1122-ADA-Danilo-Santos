@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const backStepBtn = document.getElementById('backStep');
   const registerBtn = document.getElementById('register');
   const nextStepBtn = document.getElementById('nextStep');
+  const restartButton = document.getElementById('restartButton');
 
   calculateBtn.addEventListener('click', function () {
     if (validateStep1()) {
@@ -58,6 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   registerBtn.addEventListener('click', function () {
+    event.preventDefault();
     if (validateStep2()) {
       saveStep2Values();
       step2.style.display = 'none';
@@ -156,5 +158,15 @@ document.addEventListener('DOMContentLoaded', function () {
         </tr>
       `;
   }
+
+  restartButton.addEventListener('click', function () {
+    step3.style.display = 'none';
+    step1.style.display = 'block';
+
+    document.getElementById('homens').value = 0;
+    document.getElementById('mulheres').value = 0;
+    document.getElementById('criancas').value = 0;
+    document.getElementById('alcool').value = 0;
+  });
 
 });
