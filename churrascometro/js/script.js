@@ -94,12 +94,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const carneCrianca = 0.2 * criancas;
     const totalCarne = (carneHomem + carneMulher + carneCrianca).toFixed(2);
 
-    const paoDeAlho = 2 * mulheres + criancas;
-    const carvao = homens + mulheres + criancas + alcool;
-    const sal = (0.04 * (homens + mulheres + criancas + alcool)).toFixed(2);
-    const gelo = Math.ceil((homens + mulheres + criancas + alcool) / 10) * 5;
-    const refrigerante = Math.ceil((homens + mulheres + criancas + alcool) / 5);
-    const agua = Math.ceil((homens + mulheres + criancas + alcool) / 5);
+    const paoDeAlho = 2 * (homens + mulheres) + criancas;
+    const carvao = homens + mulheres + criancas;
+    const sal = (0.04 * (homens + mulheres + criancas)).toFixed(2);
+    const gelo = Math.ceil((homens + mulheres + criancas) / 10) * 5;
+    const refrigerante = Math.ceil((homens + mulheres + criancas) / 5);
+    const agua = Math.ceil((homens + mulheres + criancas) / 5);
     const cerveja = 3 * alcool;
 
     const table = document.querySelector('#step3 table');
