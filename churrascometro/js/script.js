@@ -100,11 +100,13 @@ document.addEventListener('DOMContentLoaded', function () {
     displayResults();
   });
 
-  function displayResults() {
+  async function displayResults() {
     const homens = parseInt(document.getElementById('homens').value);
     const mulheres = parseInt(document.getElementById('mulheres').value);
     const criancas = parseInt(document.getElementById('criancas').value);
     const alcool = parseInt(document.getElementById('alcool').value);
+
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     const carneHomem = 0.4 * homens;
     const carneMulher = 0.32 * mulheres;
