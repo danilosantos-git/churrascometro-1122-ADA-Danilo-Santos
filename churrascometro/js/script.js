@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const step2 = document.getElementById('step2');
   const step3 = document.getElementById('step3');
   const calculateBtn = document.getElementById('calculate');
-  const nextStepBtn = document.getElementById('nextStep');
-  const backStepBtn = document.getElementById('backStep');
   const inputCep = document.getElementById('cep');
+  const backStepBtn = document.getElementById('backStep');
+  const registerBtn = document.getElementById('register');
+  const nextStepBtn = document.getElementById('nextStep');
 
   calculateBtn.addEventListener('click', function () {
     if (validateStep1()) {
@@ -56,8 +57,9 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('alcool').value = sessionStorage.getItem('alcool') || '';
   }
 
-  nextStepBtn.addEventListener('click', function () {
+  registerBtn.addEventListener('click', function () {
     if (validateStep2()) {
+      saveStep2Values();
       step2.style.display = 'none';
       step3.style.display = 'block';
       displayResults();
@@ -82,6 +84,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     return true;
   }
+
+  function saveStep2Values() {
+    sessionStorage.setItem('nome', document.getElementById('nome').value);
+    sessionStorage.setItem('email', document.getElementById('email').value);
+    sessionStorage.setItem('cep', document.getElementById('cep').value);
+  }
+
+  nextStepBtn.addEventListener('click', function () {
+    step2.style.display = 'none';
+    step3.style.display = 'block';
+    displayResults();
+  });
 
   function displayResults() {
     const homens = parseInt(document.getElementById('homens').value);
