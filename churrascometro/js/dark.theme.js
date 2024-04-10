@@ -1,26 +1,23 @@
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
+document.addEventListener('DOMContentLoaded', function () {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const body = document.body;
 
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme) {
-    body.classList.add(savedTheme);
-    if (savedTheme === 'dark-theme') {
-        themeToggle.textContent = 'Tema Claro';
-    } else {
-        themeToggle.textContent = 'Tema Escuro';
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme) {
+        body.classList.add(currentTheme);
     }
-}
 
-themeToggle.addEventListener('click', function () {
-    if (body.classList.contains('light-theme')) {
-        body.classList.remove('light-theme');
-        body.classList.add('dark-theme');
-        themeToggle.textContent = 'Tema Claro';
-        localStorage.setItem('theme', 'dark-theme');
-    } else {
-        body.classList.remove('dark-theme');
-        body.classList.add('light-theme');
-        themeToggle.textContent = 'Tema Escuro';
-        localStorage.setItem('theme', 'light-theme');
-    }
+    themeToggleBtn.addEventListener('click', function () {
+        if (body.classList.contains('dark-theme')) {
+            body.classList.remove('dark-theme');
+            body.classList.add('light-theme');
+            themeToggleBtn.textContent = 'Tema Claro';
+            localStorage.setItem('theme', 'light-theme');
+        } else {
+            body.classList.remove('light-theme');
+            body.classList.add('dark-theme');
+            themeToggleBtn.textContent = 'Tema Escuro';
+            localStorage.setItem('theme', 'dark-theme');
+        }
+    });
 });

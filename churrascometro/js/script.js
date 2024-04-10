@@ -2,22 +2,24 @@ document.addEventListener('DOMContentLoaded', function () {
   const step1 = document.getElementById('step1');
   const step2 = document.getElementById('step2');
   const step3 = document.getElementById('step3');
-  const nextStepBtn = document.getElementById('nextStep');
   const calculateBtn = document.getElementById('calculate');
+  const nextStepBtn = document.getElementById('nextStep');
+  const backStepBtn = document.getElementById('backStep');
+  const inputCep = document.getElementById('cep');
 
   calculateBtn.addEventListener('click', function () {
     if (validateStep1()) {
+      saveStep1Values();
       step1.style.display = 'none';
       step2.style.display = 'block';
     }
   });
 
-  nextStepBtn.addEventListener('click', function () {
-    if (validateStep2()) {
-      step2.style.display = 'none';
-      step3.style.display = 'block';
-      displayResults();
-    }
+  inputCep.addEventListener('input', function (e) {
+    let cep = e.target.value;
+    cep = cep.replace(/\D/g, '');
+    cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
+    e.target.value = cep;
   });
 
   function validateStep1() {
@@ -33,6 +35,34 @@ document.addEventListener('DOMContentLoaded', function () {
 
     return true;
   }
+
+  function saveStep1Values() {
+    sessionStorage.setItem('homens', document.getElementById('homens').value);
+    sessionStorage.setItem('mulheres', document.getElementById('mulheres').value);
+    sessionStorage.setItem('criancas', document.getElementById('criancas').value);
+    sessionStorage.setItem('alcool', document.getElementById('alcool').value);
+  }
+
+  backStepBtn.addEventListener('click', function () {
+    step2.style.display = 'none';
+    step1.style.display = 'block';
+    fillStep1Fields();
+  });
+
+  function fillStep1Fields() {
+    document.getElementById('homens').value = sessionStorage.getItem('homens') || '';
+    document.getElementById('mulheres').value = sessionStorage.getItem('mulheres') || '';
+    document.getElementById('criancas').value = sessionStorage.getItem('criancas') || '';
+    document.getElementById('alcool').value = sessionStorage.getItem('alcool') || '';
+  }
+
+  nextStepBtn.addEventListener('click', function () {
+    if (validateStep2()) {
+      step2.style.display = 'none';
+      step3.style.display = 'block';
+      displayResults();
+    }
+  });
 
   function validateStep2() {
     const nome = document.getElementById('nome').value;
@@ -62,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const carneHomem = 0.4 * homens;
     const carneMulher = 0.32 * mulheres;
     const carneCrianca = 0.2 * criancas;
-    const totalCarne = carneHomem + carneMulher + carneCrianca;
+    const totalCarne = (carneHomem + carneMulher + carneCrianca).toFixed(2);
 
     const paoDeAlho = 2 * mulheres + criancas;
     const carvao = homens + mulheres + criancas + alcool;
