@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   nextStepBtn.addEventListener('click', function () {
+    event.preventDefault();
     step2.style.display = 'none';
     step3.style.display = 'block';
     displayResults();
@@ -167,6 +168,10 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('mulheres').value = 0;
     document.getElementById('criancas').value = 0;
     document.getElementById('alcool').value = 0;
+
+    document.getElementById('nome').value = '';
+    document.getElementById('email').value = '';
+    document.getElementById('cep').value = '';
   });
 
 });
